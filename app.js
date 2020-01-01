@@ -27,7 +27,7 @@ let app = express();
 mongoose.connect(process.env.DB_URL || `mongodb://localhost/kittenKamp`, { useNewUrlParser: true, useUnifiedTopology: true });
 
 // start mongodb with fresh data
-// sedDb(); // <= uncomment to enable
+// seedDb(); // <= uncomment to enable
 
 // middleware - automatically parse form data sent on POST, PUT requests etc. to JSON
 app.use(bodyParser.urlencoded({ extended: true }));
