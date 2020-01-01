@@ -1,0 +1,118 @@
+body 
+{
+	background-color: #000;
+}
+
+header
+{
+	z-index: 1;
+	position: relative;
+	text-align: center;
+	padding-top: 40vh;
+}
+
+header 
+{
+	color: #fff;
+}
+
+.slideshow 
+{ 
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	z-index: 0;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.slideshow li 
+{ 
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	background-size: cover;
+	background-position: 50% 50%;
+	background-repeat: no-repeat;
+	opacity: 0;
+	z-index: 0;
+	animation: imageAnimation 50s linear infinite; 
+}
+
+.slideshow li:nth-child(1) 
+{ 
+<<<<<<< HEAD
+	background-image: url(https://pixabay.com/images/download/night-1189929.jpg) 
+}
+.slideshow li:nth-child(2) 
+{ 
+	background-image: url(https://pixabay.com/images/download/yosemite-690046.jpg);
+=======
+	background-image: url(/img/slide-1.webp);
+}
+.slideshow li:nth-child(2) 
+{ 
+	background-image: url(/img/slide-2.webp);
+>>>>>>> d304318e90e6de902c13f214aad9dd00a526ef62
+	animation-delay: 10s; 
+}
+.slideshow li:nth-child(3) 
+{ 
+<<<<<<< HEAD
+	background-image: url(https://pixabay.com/images/download/sunrise-1634197.jpg);
+	animation-delay: 20s; 
+}
+.slideshow li:nth-child(4) 
+{ 
+	background-image: url(https://pixabay.com/images/download/coast-540123.jpg);
+=======
+	background-image: url(/img/slide-3.webp);
+	animation-delay: 20s; 
+}
+.slideshow li:nth-child(4) 
+{
+	background-image: url(/img/slide-4.webp);
+>>>>>>> d304318e90e6de902c13f214aad9dd00a526ef62
+	animation-delay: 30s; 
+}
+.slideshow li:nth-child(5) 
+{ 
+<<<<<<< HEAD
+	background-image: url(https://pixabay.com/get/5fe2d644495ab114b2d18179c220377c083edbe25650714e7c2d7f/milky-way-923738.jpg);
+=======
+	background-image: url(/img/slide-5.webp);
+>>>>>>> d304318e90e6de902c13f214aad9dd00a526ef62
+	animation-delay: 40s; 
+}
+
+@keyframes imageAnimation 
+{ 
+	0% 
+	{ 
+		opacity: 0; 
+		animation-timing-function: ease-in;
+	}
+	10% 
+	{
+		opacity: 1;
+		animation-timing-function: ease-out;
+	}
+	20% 
+	{
+		opacity: 1
+	}
+	30% 
+	{
+		opacity: 0
+	}
+}
+
+.no-cssanimations .slideshow li 
+{
+	opacity: 1;
+}

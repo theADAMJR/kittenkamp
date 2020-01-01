@@ -1,0 +1,31 @@
+<% include partials/header %>
+
+	<h1 class="text-center mt-5">Login</h1>
+
+	<form class="container" action="/login<%= redirect && `?redirect=${redirect}` %>" method="POST">
+		<div class="form-group">
+			<label for="username">Username: </label>
+			<input class="form-control" type="text" name="username" placeholder="e.g. <%= faker.name.findName() %>">
+			
+			<label class="mt-2" for="Password">Password: </label>
+			<input id="password" class="form-control" type="password" name="password" placeholder="Password">
+		  	<i id="peek" class="fa fa-eye" title="Show" style="position: absolute;" aria-hidden="true"></i>
+		</div>
+		<button class="btn btn-primary">Login</button>
+	</form>
+
+<script>
+	var password = $("#password");	
+	var peek = $("#peek");
+	var isPeeked = true;
+	
+	peek.on("click", () => 
+	{
+		isPeeked = !isPeeked;
+		peek.attr("class", isPeeked ? "fa fa-eye" : "fa fa-eye-slash");
+		peek.attr("title", isPeeked ? "Show" : "Hide");
+		password.attr("type", !isPeeked ? "text" : "password");
+	});
+</script>
+
+<% include partials/footer %>

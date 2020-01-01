@@ -1,0 +1,92 @@
+<% include partials/header %>
+
+	<h1 class="text-center mt-5">Sign Up</h1>
+
+	<form class="container" action="/sign-up" method="POST">
+		<div class="form-group">
+			<label for="username">Username: </label>
+			<input class="form-control" type="text" name="username" placeholder="e.g. <%= faker.name.findName() %>">
+			
+			<label for="password">Password: </label>
+			<input id="password" class="form-control" type="password" name="password" placeholder="Password">
+			<a id="peek" class="btn btn-sm btn-info">Show password</a>
+			<meter max="4" id="password-strength-meter"></meter>
+			<p id="password-strength-text"></p>
+		</div>
+		<button class="btn btn-primary">Sign Up</button>
+	</form>
+	
+	<style>
+
+	meter {
+		/* Reset the default appearance */
+		-webkit-appearance: none;
+		   -moz-appearance: none;
+				appearance: none;
+
+		margin: 0 auto 1em;
+		width: 100%;
+		height: .5em;
+
+		/* Applicable only to Firefox */
+		background: none;
+		background-color: rgba(0,0,0,0.1);
+	}
+
+	meter::-webkit-meter-bar {
+		background: none;
+		background-color: rgba(0,0,0,0.1);
+	}
+
+	meter[value="1"]::-webkit-meter-optimum-value { background: red; }
+	meter[value="2"]::-webkit-meter-optimum-value { background: yellow; }
+	meter[value="3"]::-webkit-meter-optimum-value { background: orange; }
+	meter[value="4"]::-webkit-meter-optimum-value { background: green; }
+
+	meter[value="1"]::-moz-meter-bar { background: red; }
+	meter[value="2"]::-moz-meter-bar { background: yellow; }
+	meter[value="3"]::-moz-meter-bar { background: orange; }
+	meter[value="4"]::-moz-meter-bar { background: green; }
+
+	.feedback {
+		color: #9ab;
+		font-size: 90%;
+		padding: 0 .25em;
+		font-family: Courgette, cursive;
+		margin-top: 1em;
+	}
+	</style>
+
+<script>
+	var strength = 
+	{
+		0: `<span style="color: darkred;">Very weak</span>`,
+		1: `<span style="color: red;">Weak</span>`,
+		2: `<span style="color: orange;">Could be better</span>`,
+		3: `<span style="color: yellow;">Not too bad</span>`,
+		4: `<span style="color: green;">Strong</span>`
+	}
+
+	var password = $("#password");
+	var text = $("#password-strength-text");
+	
+	password.on("input", () =>
+	{
+		var val = password.val();
+		var result = zxcvbn(val);
+
+		$("meter").val(result.score);
+
+		text.html(val !== "" ? `Strength: <strong>${strength[result.score]}</strong> <p class="feedback"> ${result.feedback.warning} ${result.feedback.suggestions}</p>` : "");
+	});
+	
+	var peek = $("#peek");
+	var isPeeked = true;
+	peek.on("click", () => 
+	{
+		isPeeked = !isPeeked;
+		password.attr("type", !isPeeked ? "text" : "password");
+	});
+</script>
+
+<% include partials/footer %>
